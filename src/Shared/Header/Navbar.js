@@ -1,33 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../Assetes/Logo/logo.png';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const Navbar = () => {
-    // const { user, logout } = useContext(AuthContext);
-    // const navigate = useNavigate();
-    // const handleLogout = () => {
-    //     logout()
-    //         .then(res => {
-    //             navigate('/');
-    //         })
-    //         .catch(err => console.error(err))
-    // }
+    const { user, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        logout()
+            .then(res => {
+                navigate('/');
+            })
+            .catch(err => console.error(err))
+    }
 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/'>All Books</Link></li>
         <li><Link to='/'>About</Link></li>
         <li><Link to='/'>Blog</Link></li>
-        <li><Link to='/login'>Login</Link></li>
-        {/* {
-            user?.uid ?
-                <>
-                    <li><Link to='/dashboard'>Dashboard</Link></li>
-                    <li><button onClick={handleLogout}>Logout</button></li>
-                </>
-                :
-                <li><Link to='/login'>Login</Link></li>
-        } */}
     </>
 
     return (
@@ -63,9 +54,16 @@ const Navbar = () => {
                         </div>
                     </label>
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                        <li><Link>Profile</Link></li>
-                        <li><Link>Dashboard</Link></li>
-                        <li><Link>Logout</Link></li>
+                        {
+                            user?.uid ?
+                                <>
+                                    <li><Link>Profile</Link></li>
+                                    <li><Link>Dashboard</Link></li>
+                                    <li><button onClick={handleLogout}>Logout</button></li>
+                                </>
+                                :
+                                <li><Link to='/login'>Login</Link></li>
+                        }
                     </ul>
                 </div>
             </div>

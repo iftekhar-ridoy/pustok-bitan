@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 // import useToken from '../../Hooks/useToken';
@@ -26,6 +27,7 @@ const Login = () => {
 
         signInUser(data.email, data.password)
             .then(res => {
+                toast.success('Login Successful');
                 const user = res.user;
                 console.log(user);
                 // setLoginUserEmail(data.email);
@@ -70,12 +72,12 @@ const Login = () => {
                         {loginError && <p className='text-red-600'>{loginError}</p>}
                     </div>
 
-                    <input className='btn btn-accent w-full mt-4' value='Login' type="submit" />
+                    <input className='btn btn-success w-full mt-4' value='Login' type="submit" />
 
 
                 </form>
 
-                <p className='text-sm text-center mt-3'>New to Doctors Portal? <Link to='/register' className='text-secondary hover:underline'>Create new account</Link> </p>
+                <p className='text-sm text-center mt-3'>New to Putok-Bitan? <Link to='/register' className='font-semibold text-green-600 hover:underline'>Create new account</Link> </p>
                 <div className='divider'>OR</div>
                 <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
 
