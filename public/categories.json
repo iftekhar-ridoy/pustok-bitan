@@ -1,7 +1,7 @@
 [
     {
         "_id": "635a0c0b64a6d231228942ae",
-        "title": "Science",
+        "title": "Novel",
         "img": "https://i.ibb.co/T2cpBd5/888.jpg",
         "items": [
             {
@@ -52,7 +52,7 @@
     },
     {
         "_id": "635a0c0b64a6d231228942af",
-        "title": "Business Studies",
+        "title": "Islamic Book",
         "img": "https://i.ibb.co/ydCbDN3/5555.jpg",
         "items": [
             {
@@ -155,7 +155,7 @@
     },
     {
         "_id": "635b5afc1dafe382a9da8c98",
-        "title": "Electrical and Electronics Engineering",
+        "title": "EEE",
         "img": "https://i.ibb.co/5MvmD2g/88.jpg",
         "items": [
             {
@@ -205,58 +205,8 @@
         ]
     },
     {
-        "_id": "635b5b691dafe382a9da8c99",
-        "title": "Nutrition and Food Engineering",
-        "items": [
-            {
-                "name": "Food chemistry",
-                "id": "01",
-                "picture": "https://i.ibb.co/ydCbDN3/5555.jpg",
-                "location": "Bogura",
-                "resale_price": 99,
-                "original_price": 149,
-                "uses_years": 1,
-                "time": "10:30 PM",
-                "seller_name": "Sabbir Rahman"
-            },
-            {
-                "name": "Food safety and microbiology",
-                "id": "02",
-                "picture": "https://i.ibb.co/ydCbDN3/5555.jpg",
-                "location": "Pabna",
-                "resale_price": 120,
-                "original_price": 180,
-                "uses_years": 1,
-                "time": "10:30 PM",
-                "seller_name": "Sabbir Rahman"
-            },
-            {
-                "name": "Food engineering",
-                "id": "03",
-                "picture": "https://i.ibb.co/ydCbDN3/5555.jpg",
-                "location": "Pabna",
-                "resale_price": 120,
-                "original_price": 180,
-                "uses_years": 1,
-                "time": "10:30 PM",
-                "seller_name": "Sabbir Rahman"
-            },
-            {
-                "name": "Food processing technologies",
-                "id": "04",
-                "picture": "https://i.ibb.co/ydCbDN3/5555.jpg",
-                "location": "Pabna",
-                "resale_price": 120,
-                "original_price": 180,
-                "uses_years": 1,
-                "time": "10:30 PM",
-                "seller_name": "Sabbir Rahman"
-            }
-        ]
-    },
-    {
         "_id": "635b5ba51dafe382a9da8c9a",
-        "title": "Social Science",
+        "title": "Social",
         "items": [
             {
                 "name": "Political science",

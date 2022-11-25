@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider';
+import Loader from '../../../Shared/Loader/Loader';
 
 const Categories = () => {
+    const { loading } = useContext(AuthContext);
     const [categories, setCategories] = useState([]);
     useEffect(() => {
         fetch('categories.json')
@@ -10,10 +13,13 @@ const Categories = () => {
             .then(data => setCategories(data))
     }, []);
 
+    if (loading) {
+        return <Loader></Loader>
+    }
     return (
-        <div className='my-10'>
-            <h2 className='text-3xl text-center'>Categories</h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+        <div className=' mt-20 mb-10'>
+            <h2 className='text-3xl text-center font-semibold'>Categories</h2>
+            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5'>
                 {
                     categories?.map(category =>
                         <div
