@@ -8,10 +8,10 @@ const CategoryItemsCard = ({ item }) => {
             <div className="card w-full bg-base-100 shadow-xl">
                 <figure><img src={picture} alt="item" /></figure>
                 <div className="card-body">
-                    <small>Upload Time: {time}</small>
-                    <small>Seller: {seller_name}</small>
-                    <small>Location: {location}</small>
-                    <h2 className="card-title">{name}</h2>
+                    <h2 className="card-title text-2xl">{name}</h2>
+                    <p>Upload Time: {time}</p>
+                    <p>Seller: {seller_name}</p>
+                    <p>Location: {location}</p>
                     <p>Orginal Price: ${original_price}</p>
                     <p>Resale Price: ${resale_price}</p>
                     <p>Usage Years: {uses_years}</p>

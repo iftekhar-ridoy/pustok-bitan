@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../Assetes/Logo/logo.png';
 import { AuthContext } from '../../Context/AuthProvider';
+import { HiOutlineShoppingCart } from "react-icons/hi";
 
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
@@ -60,10 +61,24 @@ const Navbar = () => {
                                     <>
                                         {
                                             user?.photoURL ?
-                                                <img className="w-10 rounded-full btn-circle avatar" src={user?.photoURL} alt='' />
+                                                <div className='flex items-center'>
+                                                    <p>
+                                                        <Link>
+                                                            <HiOutlineShoppingCart className='text-2xl'></HiOutlineShoppingCart>
+                                                        </Link>
+                                                    </p>
+                                                    <img className="w-10 rounded-full btn-circle avatar" src={user?.photoURL} alt='' />
+                                                </div>
                                                 :
 
-                                                <p className='px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white hover:cursor-pointer '>{user?.displayName}</p>
+                                                <div className='flex items-center'>
+                                                    <p>
+                                                        <Link>
+                                                            <HiOutlineShoppingCart className='text-2xl'></HiOutlineShoppingCart>
+                                                        </Link>
+                                                    </p>
+                                                    <p className='ml-3 px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white hover:cursor-pointer '>{user?.displayName}</p>
+                                                </div>
                                         }
                                     </>
                             }
