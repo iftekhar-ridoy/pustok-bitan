@@ -22,7 +22,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar bg-base-100 flex justify-between">
+        <div className="navbar bg-base-100 flex justify-between px-5">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -43,14 +43,29 @@ const Navbar = () => {
                 </ul>
             </div>
 
+
             <div className="navbar-end">
-                <div className="form-control mr-1">
+
+                <div className="form-control mr-2">
                     <input type="text" placeholder="Search book by name" className="input input-bordered w-full h-10" />
                 </div>
+
                 <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img src="https://placeimg.com/80/80/people" alt='' />
+                    <label tabIndex={0}>
+                        <div >
+                            {
+                                user?.photoURL ?
+                                    <>
+                                        <img className="w-10 rounded-full btn-circle avatar" src={user?.photoURL} alt='' />
+                                    </>
+                                    :
+                                    <>
+                                        <p className='px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white hover:cursor-pointer '>{user?.displayName}</p>
+                                    </>
+                            }
+                            {
+                                !user && <p>Login</p>
+                            }
                         </div>
                     </label>
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">

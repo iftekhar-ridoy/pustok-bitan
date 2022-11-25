@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
+import { BiErrorCircle } from 'react-icons/bi';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 // import useToken from '../../Hooks/useToken';
@@ -47,25 +48,37 @@ const Login = () => {
                 <form onSubmit={handleSubmit(handleLogin)}>
 
                     <div className="form-control w-full max-w-xs">
-                        <label className="label"> <span className="label-text">Email</span> </label>
+                        <label className="label flex justify-start">
+                            Email
+                        </label>
                         <input type="email"
                             {...register("email", { required: "Email Address is required" })}
                             className="input input-bordered w-full max-w-xs" />
 
-                        {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
+                        {errors.email &&
+                            <p className='text-red-600 flex items-center gap-2 text-sm'>
+                                <BiErrorCircle></BiErrorCircle>
+                                {errors.email?.message}</p>}
                     </div>
 
                     <div className="form-control w-full max-w-xs">
-                        <label className="label"> <span className="label-text">Password</span> </label>
+                        <label className="label">
+                            Password
+                        </label>
                         <input type="password"
                             {...register("password", {
                                 required: "Password is required",
                                 minLength: { value: 6, message: 'Password must be 6 characters or longer' }
                             })}
                             className="input input-bordered w-full max-w-xs" />
+
+                        {errors.password &&
+                            <p className='text-red-600 flex items-center gap-2 text-sm'>
+                                <BiErrorCircle></BiErrorCircle>
+                                {errors.password?.message}</p>}
+
                         <label className="label"> <span className="label-text text-xs hover:underline">Forget Password?</span> </label>
 
-                        {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                     </div>
 
                     <div>

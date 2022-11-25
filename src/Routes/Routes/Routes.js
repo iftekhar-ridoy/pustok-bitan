@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main/Main";
+import CategoryItems from "../../Pages/Home/Categories/CategoryItems";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Login/Register";
@@ -20,6 +21,11 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/category/:id',
+                element: <CategoryItems></CategoryItems>,
+                loader: async ({ params }) => fetch(`categories.json/category/:${params.id}`)
             }
         ]
     }
