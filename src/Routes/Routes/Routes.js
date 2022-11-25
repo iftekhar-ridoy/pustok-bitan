@@ -23,9 +23,9 @@ export const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: '/category/:id',
+                path: '/categories/:id',
                 element: <CategoryItems></CategoryItems>,
-                loader: async ({ params }) => fetch(`categories.json/category/:${params.id}`)
+                loader: async ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
             }
         ]
     }

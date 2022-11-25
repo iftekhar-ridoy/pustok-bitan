@@ -47,24 +47,25 @@ const Navbar = () => {
             <div className="navbar-end">
 
                 <div className="form-control mr-2">
-                    <input type="text" placeholder="Search book by name" className="input input-bordered w-full h-10" />
+                    <input type="text" placeholder="Search" className="input input-bordered w-full h-10" />
                 </div>
 
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0}>
                         <div >
                             {
-                                user?.photoURL ?
-                                    <>
-                                        <img className="w-10 rounded-full btn-circle avatar" src={user?.photoURL} alt='' />
-                                    </>
+                                !user?.uid ?
+                                    <p className='px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white hover:cursor-pointer '>Login</p>
                                     :
                                     <>
-                                        <p className='px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white hover:cursor-pointer '>{user?.displayName}</p>
+                                        {
+                                            user?.photoURL ?
+                                                <img className="w-10 rounded-full btn-circle avatar" src={user?.photoURL} alt='' />
+                                                :
+
+                                                <p className='px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white hover:cursor-pointer '>{user?.displayName}</p>
+                                        }
                                     </>
-                            }
-                            {
-                                !user && <p>Login</p>
                             }
                         </div>
                     </label>
@@ -77,7 +78,10 @@ const Navbar = () => {
                                     <li><button onClick={handleLogout}>Logout</button></li>
                                 </>
                                 :
-                                <li><Link to='/login'>Login</Link></li>
+                                <>
+                                    <li><Link to='/login'>Login</Link></li>
+                                    <li><Link to='/register'>Register</Link></li>
+                                </>
                         }
                     </ul>
                 </div>
