@@ -1,8 +1,10 @@
 import React from 'react';
 
-const CategoryItemsCard = ({ item }) => {
+const CategoryItemsCard = ({ item, setItemInfo }) => {
     const { name, location, original_price, picture, resale_price, seller_name, time, uses_years } = item;
-    console.log(picture);
+
+
+
     return (
         <div>
             <div className="card w-full bg-base-100 shadow-xl">
@@ -16,10 +18,11 @@ const CategoryItemsCard = ({ item }) => {
                     <p>Resale Price: ${resale_price}</p>
                     <p>Usage Years: {uses_years}</p>
                     <div className="card-actions justify-center mt-5">
-                        <button
-                            className='px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white hover:cursor-pointer'>
-                            Buy Now
-                        </button>
+                        <label
+                            htmlFor="buy-item-modal"
+                            className='px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white hover:cursor-pointer'
+                            onClick={() => setItemInfo(item)}
+                        >Order Now</label>
                         <button
                             className='px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white hover:cursor-pointer'>
                             Add to wishlist

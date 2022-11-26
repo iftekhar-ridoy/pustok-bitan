@@ -5,7 +5,7 @@ import { FaFacebookSquare, FaGithubSquare, FaInstagramSquare, FaLinkedin } from 
 
 const Footer = () => {
     return (
-        <footer className="mt-80 py-5 mb-5">
+        <footer className="mt-20 py-5 mb-5">
             <div className='divider py-5'></div>
             <div className='footer px-12'>
                 <div className='my-auto'>

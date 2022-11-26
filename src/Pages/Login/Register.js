@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import toast from 'react-hot-toast';
 import { BiErrorCircle } from "react-icons/bi";
@@ -9,13 +9,16 @@ import { BiErrorCircle } from "react-icons/bi";
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const { signUpUser, updateUser } = useContext(AuthContext);
+    const { signUpUser, updateUser, setUser, googleSignIn } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
 
 
     // const [createdUserEmail, setCreatedUserEmail] = useState('');
     // const [token] = useToken(createdUserEmail);
-    const navigate = useNavigate();
 
     // if (token) {
     //     navigate('/');
@@ -30,15 +33,15 @@ const Register = () => {
             .then(res => {
                 const user = res.user;
                 console.log(user);
-                toast.success('user created successfully.')
+                // toast.success('user created successfully.')
                 const userInfo = {
                     displayName: data.name,
                     role: data.selectRole
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        // saveUser(data.name, data.email);
-                        navigate('/');
+                        saveUser(data.name, data.email, data.selectRole);
+                        // navigate('/');
                     })
                     .catch(err => console.error(err))
             })
@@ -48,24 +51,47 @@ const Register = () => {
             })
     }
 
-    // const saveUser = (name, email, selectRole) => {
-    //     const user = {
-    //         name,
-    //         email,
-    //         selectRole,
-    //     };
-    //     fetch('http://localhost:5000/users', {
-    //         method: 'POST',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(user)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setCreatedUserEmail(email);
-    //         })
-    // }
+    const saveUser = (name, email, selectRole) => {
+        const user = {
+            name,
+            email,
+            selectRole,
+        };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('user created successfully.')
+                navigate('/');
+                // setCreatedUserEmail(email);
+            })
+    }
+
+    const handleGoogle = () => {
+        googleSignIn()
+            .then(res => {
+                const user = res.user;
+                const selectRole = 'Buyer';
+                console.log(user);
+                setUser(user);
+                saveUser(user.displayName, user.email, selectRole);
+                toast.success('Login Successful');
+                navigate(from, { replace: true });
+                // setLoginUserEmail(data.email);
+
+            })
+            .catch(err => {
+                console.error(err.message)
+                setSignUpError(err.message)
+
+            })
+    }
+
 
 
     return (
@@ -154,7 +180,7 @@ const Register = () => {
                 <div className='divider'>OR</div>
 
                 <div className='flex justify-center'>
-                    <button className='btn btn-outline w-full max-w-sm'>CONTINUE WITH GOOGLE</button>
+                    <button onClick={handleGoogle} className='btn btn-outline w-full max-w-sm'>CONTINUE WITH GOOGLE</button>
                 </div>
             </div>
         </div>

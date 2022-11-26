@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../Assetes/Logo/logo.png';
 import { AuthContext } from '../../Context/AuthProvider';
 import { HiOutlineShoppingCart } from "react-icons/hi";
-
+import { RiArrowDownSFill } from "react-icons/ri";
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -17,7 +17,6 @@ const Navbar = () => {
 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/'>All Books</Link></li>
         <li><Link to='/'>About</Link></li>
         <li><Link to='/'>Blog</Link></li>
     </>
@@ -26,7 +25,7 @@ const Navbar = () => {
         <div className="navbar bg-base-100 flex justify-between px-5">
             <div className="navbar-start">
                 <div className="dropdown">
-                    <label tabIndex={0} className="btn btn-ghost lg:hidden">
+                    <label tabIndex={0} className="lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
                     <ul tabIndex={1} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
@@ -47,9 +46,17 @@ const Navbar = () => {
 
             <div className="navbar-end">
 
-                <div className="form-control mr-2">
+                <div className="form-control mr-2 hidden md:block">
                     <input type="text" placeholder="Search" className="input input-bordered w-full h-10" />
                 </div>
+
+                {
+                    user && <p>
+                        <Link>
+                            <HiOutlineShoppingCart className='text-2xl'></HiOutlineShoppingCart>
+                        </Link>
+                    </p>
+                }
 
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0}>
@@ -62,22 +69,14 @@ const Navbar = () => {
                                         {
                                             user?.photoURL ?
                                                 <div className='flex items-center'>
-                                                    <p>
-                                                        <Link>
-                                                            <HiOutlineShoppingCart className='text-2xl'></HiOutlineShoppingCart>
-                                                        </Link>
-                                                    </p>
-                                                    <img className="w-10 rounded-full btn-circle avatar" src={user?.photoURL} alt='' />
+                                                    <img className="ml-3 w-10 h-10 cursor-pointer rounded-full btn-circle avatar" src={user?.photoURL} alt='' />
                                                 </div>
                                                 :
 
                                                 <div className='flex items-center'>
-                                                    <p>
-                                                        <Link>
-                                                            <HiOutlineShoppingCart className='text-2xl'></HiOutlineShoppingCart>
-                                                        </Link>
-                                                    </p>
-                                                    <p className='ml-3 px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white hover:cursor-pointer '>{user?.displayName}</p>
+                                                    <p className='ml-3 px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white cursor-pointer flex items-center'>{user?.displayName.slice(0, 15)}
+                                                        <RiArrowDownSFill className='ml-2'></RiArrowDownSFill></p>
+
                                                 </div>
                                         }
                                     </>
@@ -89,7 +88,7 @@ const Navbar = () => {
                             user?.uid ?
                                 <>
                                     <li><Link>Profile</Link></li>
-                                    <li><Link>Dashboard</Link></li>
+                                    <li><Link to='/myOrders'>My Orders</Link></li>
                                     <li><button onClick={handleLogout}>Logout</button></li>
                                 </>
                                 :

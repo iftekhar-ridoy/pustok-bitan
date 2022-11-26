@@ -9,7 +9,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signInUser } = useContext(AuthContext);
+    const { setUser, signInUser, googleSignIn } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     // const [loginUserEmail, setLoginUserEmail] = useState('');
     // const [token] = useToken(loginUserEmail);
@@ -31,8 +31,48 @@ const Login = () => {
                 toast.success('Login Successful');
                 const user = res.user;
                 console.log(user);
+                setUser(user);
                 // setLoginUserEmail(data.email);
                 navigate(from, { replace: true });
+            })
+            .catch(err => {
+                console.error(err.message)
+                setLoginError(err.message);
+            })
+    }
+
+    const saveUser = (name, email, selectRole) => {
+        const user = {
+            name,
+            email,
+            selectRole,
+        };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('user created successfully.')
+                navigate('/');
+                // setCreatedUserEmail(email);
+            })
+    }
+
+    const handleGoogle = () => {
+        googleSignIn()
+            .then(res => {
+                const user = res.user;
+                const selectRole = 'Buyer';
+                console.log(user);
+                setUser(user);
+                saveUser(user.displayName, user.email, selectRole);
+                toast.success('Login Successful');
+                navigate(from, { replace: true });
+                // setLoginUserEmail(data.email);
             })
             .catch(err => {
                 console.error(err.message)
@@ -92,7 +132,7 @@ const Login = () => {
 
                 <p className='text-sm text-center mt-3'>New to Putok-Bitan? <Link to='/register' className='font-semibold text-green-600 hover:underline'>Create new account</Link> </p>
                 <div className='divider'>OR</div>
-                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogle} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
 
             </div>
         </div>
