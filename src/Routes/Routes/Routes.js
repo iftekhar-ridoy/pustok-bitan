@@ -5,6 +5,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Login/Register";
 import MyOrders from "../../Pages/MyOrders/MyOrders";
+import BlankRoute from "../../Shared/BlankRoute/BlankRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -34,5 +35,9 @@ export const router = createBrowserRouter([
                 element: <MyOrders></MyOrders>
             }
         ]
+    },
+    {
+        path: '/*',
+        element: <BlankRoute></BlankRoute>
     }
 ])

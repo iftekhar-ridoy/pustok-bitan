@@ -10,7 +10,7 @@ import toast from 'react-hot-toast';
 const MyOrders = () => {
     const { user } = useContext(AuthContext)
     const [deletingOrder, setDeletingOrder] = useState(null);
-    console.log(deletingOrder);
+    // console.log(deletingOrder);
     const closeModal = () => {
         setDeletingOrder(null);
     }
@@ -36,9 +36,7 @@ const MyOrders = () => {
                     refetch();
                     toast.success(`Order for book ${myOrder.itemName} is Deleted`);
                 }
-                // navigate('/dashboard/manage-doctor')
             })
-        // }
 
     }
 
@@ -70,7 +68,6 @@ const MyOrders = () => {
                                     <th>{indx + 1}</th>
                                     <td>
                                         <div>
-                                            <p>{myOrder.userName}</p>
                                             <p className='font-semibold text-gray-500'>
                                                 <small>Order
                                                     <span className='ml-1'>{myOrder._id}</span>
