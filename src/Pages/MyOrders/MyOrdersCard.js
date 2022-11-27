@@ -80,8 +80,8 @@ const MyOrdersCard = ({ indx, myOrder, setDeletingOrder, isLoading }) => {
                 </div>
                 <div>
                     <label onClick={() => setDeletingOrder(myOrder)} htmlFor="confirmation-modal"
-                        className='cursor-pointer tooltip tooltip-warning'
-                        data-tip="Delete Order">
+                        className='cursor-pointer'
+                    >
 
                         <p className='px-2 py-1 font-semibold rounded outline outline-1 outline-red-600 hover:bg-red-600 hover:text-white hover:cursor-pointer'>Delete Order</p>
                     </label>

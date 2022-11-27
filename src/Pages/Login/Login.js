@@ -28,11 +28,12 @@ const Login = () => {
 
         signInUser(data.email, data.password)
             .then(res => {
-                toast.success('Login Successful');
+
                 const user = res.user;
                 console.log(user);
                 setUser(user);
                 // setLoginUserEmail(data.email);
+                toast.success('Login Successful');
                 navigate(from, { replace: true });
             })
             .catch(err => {
@@ -41,11 +42,12 @@ const Login = () => {
             })
     }
 
-    const saveUser = (name, email, selectRole) => {
+    const saveUser = (name, email, selectRole, image) => {
         const user = {
             name,
             email,
             selectRole,
+            image
         };
         fetch('http://localhost:5000/users', {
             method: 'POST',
@@ -69,7 +71,7 @@ const Login = () => {
                 const selectRole = 'Buyer';
                 console.log(user);
                 setUser(user);
-                saveUser(user.displayName, user.email, selectRole);
+                saveUser(user.displayName, user.email, selectRole, user.photoURL);
                 toast.success('Login Successful');
                 navigate(from, { replace: true });
                 // setLoginUserEmail(data.email);

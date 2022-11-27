@@ -9,7 +9,7 @@ import Loader from '../../../Shared/Loader/Loader';
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const imageHostkey = process.env.REACT_APP_imgbb_key;
     const navigate = useNavigate();
 
@@ -65,6 +65,7 @@ const AddProduct = () => {
                         .then(res => res.json())
                         .then(result => {
                             console.log(result);
+                            reset();
                             toast.success(`Book added successfully`);
                             navigate('/myProducts')
                         })
@@ -261,7 +262,7 @@ const AddProduct = () => {
 
                     </div>
 
-                    <div className="form-control w-full mt-2">
+                    {/* <div className="form-control w-full mt-2">
                         <label className="label flex justify-start">
                             Description
                         </label>
@@ -270,10 +271,11 @@ const AddProduct = () => {
                                 required: "Usage Time is required"
                             })}
                             className="textarea textarea-bordered text-base rounded-md" placeholder="any comments"></textarea>
-                    </div>
+                    </div> */}
 
                     <div className='flex justify-center'>
-                        <input className='btn btn-success w-full max-w-sm mt-8 rounded-md' value='Submit' type="submit" />
+                        {/* <input className='btn btn-success w-full max-w-sm mt-8 rounded-md' value='Submit' type="submit" /> */}
+                        <button className='btn btn-success w-full max-w-sm mt-8 rounded-md' value='Submit'>Submit</button>
                     </div>
                 </form>
 

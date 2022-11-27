@@ -77,8 +77,7 @@ const MyProductsCard = ({ myProduct, setDeletingOrder, isLoading }) => {
             <div className=' flex gap-5 justify-center items-center'>
                 <div>
                     <label onClick={() => setDeletingOrder(myProduct)} htmlFor="confirmation-modal"
-                        className='cursor-pointer tooltip tooltip-warning'
-                        data-tip="Delete Product">
+                        className='cursor-pointer'>
 
                         <p className='px-2 py-1 font-semibold rounded outline outline-1 outline-red-600 hover:bg-red-600 hover:text-white hover:cursor-pointer'>Delete Product</p>
                     </label>

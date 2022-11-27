@@ -12,6 +12,8 @@ const MyProducts = () => {
     const { user } = useContext(AuthContext);
     const [deletingOrder, setDeletingOrder] = useState(null);
 
+    console.log(user)
+
     const closeModal = () => {
         setDeletingOrder(null);
     }
@@ -21,7 +23,6 @@ const MyProducts = () => {
         queryFn: async () => {
             try {
                 const res = await fetch(`http://localhost:5000/addProduct?email=${user?.email}`);
-                // const res = await fetch(`http://localhost:5000/addProduct`);
                 const data = await res.json();
                 return data;
             }

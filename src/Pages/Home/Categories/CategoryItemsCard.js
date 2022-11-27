@@ -8,7 +8,7 @@ const CategoryItemsCard = ({ item, setItemInfo }) => {
     return (
         <div>
             <div className="card w-full bg-base-100 shadow-xl">
-                <figure><img src={picture} alt="item" /></figure>
+                <figure className='bg-slate-200'><img src={picture} className='h-40' alt="item" /></figure>
                 <div className="card-body">
                     <h2 className="card-title text-2xl">{name}</h2>
                     <p>Upload Time: {time}</p>

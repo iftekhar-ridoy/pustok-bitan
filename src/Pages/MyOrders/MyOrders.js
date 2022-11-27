@@ -5,11 +5,14 @@ import Loader from '../../Shared/Loader/Loader';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import toast from 'react-hot-toast';
 import MyOrdersCard from './MyOrdersCard';
-import { AuthContext } from '../../Context/AuthProvider';
+
 import { useQuery } from '@tanstack/react-query';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const MyOrders = () => {
-    const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext)
+
+    console.log(user);
     const [deletingOrder, setDeletingOrder] = useState(null);
     // console.log(deletingOrder);
     const closeModal = () => {
@@ -17,16 +20,13 @@ const MyOrders = () => {
     }
 
     const { data: myOrders = [], isLoading, refetch } = useQuery({
-        queryKey: ['myOrders'],
+        queryKey: ['bookings'],
         queryFn: async () => {
-            try {
-                const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`);
-                const data = await res.json();
-                return data;
-            }
-            catch (error) {
 
-            }
+            const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`);
+            const data = await res.json();
+            return data;
+
         }
     });
 

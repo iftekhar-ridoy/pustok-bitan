@@ -18,15 +18,15 @@ const Navbar = () => {
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/'>About</Link></li>
-        <li><Link to='/'>Blog</Link></li>
+        <li><Link to='/blog'>Blog</Link></li>
     </>
 
     return (
-        <div className="navbar bg-base-100 flex justify-between px-5">
+        <div className="navbar bg-base-100 flex justify-between px-5 mb-5">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
                     <ul tabIndex={1} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {menuItems}
@@ -53,7 +53,7 @@ const Navbar = () => {
                 {
                     user && <p>
                         <Link>
-                            <HiOutlineShoppingCart className='text-2xl'></HiOutlineShoppingCart>
+                            <HiOutlineShoppingCart className='text-3xl'></HiOutlineShoppingCart>
                         </Link>
                     </p>
                 }
@@ -68,13 +68,13 @@ const Navbar = () => {
                                     <>
                                         {
                                             user?.photoURL ?
-                                                <div className='flex items-center'>
-                                                    <img className="ml-3 w-10 h-10 cursor-pointer rounded-full btn-circle avatar" src={user?.photoURL} alt='' />
+                                                <div className='flex items-center tooltip tooltip-bottom tooltip-success' data-tip={user?.displayName}>
+                                                    <img className="ml-3 w-12 h-12 cursor-pointer rounded-full btn-circle avatar" src={user?.photoURL} alt='' />
                                                 </div>
                                                 :
 
                                                 <div className='flex items-center'>
-                                                    <p className='ml-3 px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white cursor-pointer flex items-center'>{user?.displayName.slice(0, 15)}
+                                                    <p className='ml-3 px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white cursor-pointer flex items-center'>{user?.displayName?.slice(0, 12)}
                                                         <RiArrowDownSFill className='ml-2'></RiArrowDownSFill></p>
 
                                                 </div>
@@ -87,10 +87,12 @@ const Navbar = () => {
                         {
                             user?.uid ?
                                 <>
-                                    <li><Link>Profile</Link></li>
                                     <li><Link to='/myOrders'>My Orders</Link></li>
                                     <li><Link to='/addProduct'>Add A Product</Link></li>
                                     <li><Link to='/myProducts'>My Products</Link></li>
+                                    <li><Link to='/allBuyers'>All Buyers</Link></li>
+                                    <li><Link to='/allSellers'>All Sellers</Link></li>
+
                                     <li><button onClick={handleLogout}>Logout</button></li>
                                 </>
                                 :

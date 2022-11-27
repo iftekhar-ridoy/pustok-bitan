@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import BuyItemModal from './BuyItemModal';
-import Categories from './Categories';
 import CategoryItemsCard from './CategoryItemsCard';
 
 const CategoryItems = () => {
@@ -29,7 +28,7 @@ const CategoryItems = () => {
                 ></BuyItemModal>
             }
 
-            <Categories></Categories>
+
         </div>
     );
 };

@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../Assetes/Logo/logo.png';
 import { FaFacebookSquare, FaGithubSquare, FaInstagramSquare, FaLinkedin } from "react-icons/fa";
+import FooterCategory from './FooterCategory';
 
 const Footer = () => {
+    const [categories, setCategories] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/categories')
+            .then(res => res.json())
+            .then(data => setCategories(data))
+    }, []);
     return (
         <footer className="mt-20 py-5 mb-5">
             <div className='divider py-5'></div>
@@ -13,17 +20,23 @@ const Footer = () => {
                 </div>
                 <div>
                     <span className="footer-title">Categories</span>
-                    <Link to='/' className="link link-hover">Branding</Link>
-                    <Link to='/' className="link link-hover">Design</Link>
-                    <Link to='/' className="link link-hover">Marketing</Link>
-                    <Link to='/' className="link link-hover">Advertisement</Link>
+                    {
+                        categories?.map(category =>
+                            <FooterCategory
+                                key={category._id}
+                                category={category}
+                            ></FooterCategory>
+                        )
+                    }
                 </div>
                 <div>
                     <span className="footer-title">On Site</span>
                     <Link to='/' className="link link-hover">Home</Link>
-                    <Link to='/' className="link link-hover">All Books</Link>
                     <Link to='/' className="link link-hover">About</Link>
                     <Link to='/' className="link link-hover">Blog</Link>
+                    <Link to='/' className="link link-hover">Buyers</Link>
+                    <Link to='/' className="link link-hover">Sellers</Link>
+                    <Link to='/' className="link link-hover">Admin</Link>
                 </div>
                 <div>
                     <span className="footer-title">Legal</span>
