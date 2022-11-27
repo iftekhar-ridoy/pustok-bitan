@@ -28,7 +28,7 @@ const MyOrders = () => {
 
             }
         }
-    })
+    });
 
     const handelDeleteOrder = (myOrder) => {
         console.log(myOrder);

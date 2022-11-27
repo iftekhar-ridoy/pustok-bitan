@@ -1,15 +1,26 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { BiErrorCircle } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
+import Loader from '../../../Shared/Loader/Loader';
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const imageHostkey = process.env.REACT_APP_imgbb_key;
     const navigate = useNavigate();
+
+    const { data: categories, isLoading } = useQuery({
+        queryKey: ['speciality'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/categories');
+            const data = await res.json();
+            return data;
+        }
+    })
 
     const handleAddProduct = (data) => {
         console.log(data);
@@ -44,7 +55,6 @@ const AddProduct = () => {
                         description: data.description,
                     }
 
-                    // save doctors data to the database
                     fetch('http://localhost:5000/addProduct', {
                         method: 'POST',
                         headers: {
@@ -62,7 +72,10 @@ const AddProduct = () => {
 
                 }
             })
+    }
 
+    if (isLoading) {
+        return <Loader></Loader>
     }
 
     return (
@@ -95,12 +108,16 @@ const AddProduct = () => {
                                 Book Category
                                 <span className="text-red-500 text-xl">*</span>
                             </label>
-                            <input type="text"
-                                {...register("bookCategory", { required: "Category is required" })}
-                                placeholder='CSE'
-                                className="input input-bordered w-full rounded-md"
-                            />
-
+                            <select
+                                {...register("bookCategory", { required: "Speciality is required" })}
+                                className="select input-bordered w-full max-w-xs">
+                                {
+                                    categories?.map(category => <option
+                                        key={category._id}
+                                        value={category.title}
+                                    >{category.title}</option>)
+                                }
+                            </select>
                             {errors.bookCategory &&
                                 <p className='text-red-600 flex items-center gap-2 text-sm'>
                                     <BiErrorCircle></BiErrorCircle>
@@ -254,7 +271,6 @@ const AddProduct = () => {
                             })}
                             className="textarea textarea-bordered text-base rounded-md" placeholder="any comments"></textarea>
                     </div>
-
 
                     <div className='flex justify-center'>
                         <input className='btn btn-success w-full max-w-sm mt-8 rounded-md' value='Submit' type="submit" />

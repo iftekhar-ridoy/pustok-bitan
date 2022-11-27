@@ -1,6 +1,6 @@
 [
     {
-        "_id": "635a0c0b64a6d231228942ae",
+        "category_id": "01",
         "title": "Novel",
         "img": "https://i.ibb.co/T2cpBd5/888.jpg",
         "items": [
@@ -51,7 +51,7 @@
         ]
     },
     {
-        "_id": "635a0c0b64a6d231228942af",
+        "category_id": "02",
         "title": "Accouting Book",
         "img": "https://i.ibb.co/ydCbDN3/5555.jpg",
         "items": [
@@ -102,8 +102,7 @@
         ]
     },
     {
-        "_id": "635b591a1dafe382a9da8c96",
-        "service_id": "01",
+        "category_id": "03",
         "title": "CSE",
         "img": "https://i.ibb.co/R6Z2nFM/55.jpg",
         "items": [
@@ -154,7 +153,7 @@
         ]
     },
     {
-        "_id": "635b5afc1dafe382a9da8c98",
+        "category_id": "04",
         "title": "EEE",
         "img": "https://i.ibb.co/5MvmD2g/88.jpg",
         "items": [
@@ -205,7 +204,7 @@
         ]
     },
     {
-        "_id": "635b5ba51dafe382a9da8c9a",
+        "category_id": "05",
         "title": "Social",
         "items": [
             {
@@ -253,5 +252,10 @@
                 "seller_name": "Sabbir Rahman"
             }
         ]
+    },
+    {
+        "category_id": "06",
+        "title": "Social",
+        "items": []
     }
 ]
