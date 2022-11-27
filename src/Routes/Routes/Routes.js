@@ -5,6 +5,8 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Login/Register";
 import MyOrders from "../../Pages/MyOrders/MyOrders";
+import AddProduct from "../../Pages/Seller/AddProduct/AddProduct";
+import MyProducts from "../../Pages/Seller/MyProducts/MyProducts";
 import BlankRoute from "../../Shared/BlankRoute/BlankRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -33,6 +35,14 @@ export const router = createBrowserRouter([
             {
                 path: '/myOrders',
                 element: <MyOrders></MyOrders>
+            },
+            {
+                path: '/addProduct',
+                element: <AddProduct></AddProduct>
+            },
+            {
+                path: '/myProducts',
+                element: <MyProducts></MyProducts>
             }
         ]
     },

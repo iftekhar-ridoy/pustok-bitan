@@ -16,7 +16,7 @@ const CategoryItemsCard = ({ item, setItemInfo }) => {
                     <p>Location: {location}</p>
                     <p>Orginal Price: ${original_price}</p>
                     <p>Resale Price: ${resale_price}</p>
-                    <p>Usage Years: {uses_years}</p>
+                    <p>Usage Time: {`${uses_years} month`}</p>
                     <div className="card-actions justify-center mt-5">
                         <label
                             htmlFor="buy-item-modal"
