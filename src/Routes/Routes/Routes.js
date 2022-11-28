@@ -13,6 +13,8 @@ import AddProduct from "../../Pages/Seller/AddProduct/AddProduct";
 import MyProducts from "../../Pages/Seller/MyProducts/MyProducts";
 import BlankRoute from "../../Shared/BlankRoute/BlankRoute";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import SellerRoute from "../AdminRoute/SellerRoute/SellerRoute";
+import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -39,15 +41,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/myOrders',
-                element: <MyOrders></MyOrders>
+                element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
             },
             {
                 path: '/addProduct',
-                element: <AddProduct></AddProduct>
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
             },
             {
                 path: '/myProducts',
-                element: <MyProducts></MyProducts>
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
                 path: '/blog',

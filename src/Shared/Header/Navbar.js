@@ -5,10 +5,17 @@ import { AuthContext } from '../../Context/AuthProvider';
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { RiArrowDownSFill } from "react-icons/ri";
 import useAdmin from '../../Hook/useAdmin';
+import useBuyer from '../../Hook/useBuyer';
+import useSeller from '../../Hook/useSeller';
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
+
     const [isAdmin] = useAdmin(user?.email)
+    const [isBuyer] = useBuyer(user?.email)
+    const [isSeller] = useSeller(user?.email)
+
     const navigate = useNavigate();
+
     const handleLogout = () => {
         logout()
             .then(res => {
@@ -53,7 +60,7 @@ const Navbar = () => {
                 </div>
 
                 {
-                    user && <p>
+                    isBuyer && <p>
                         <Link>
                             <HiOutlineShoppingCart className='text-3xl'></HiOutlineShoppingCart>
                         </Link>
@@ -78,7 +85,6 @@ const Navbar = () => {
                                                 <div className='flex items-center'>
                                                     <p className='ml-3 px-2 py-1 font-semibold rounded outline outline-1 outline-green-600 hover:bg-green-600 hover:text-white cursor-pointer flex items-center'>{user?.displayName?.slice(0, 12)}
                                                         <RiArrowDownSFill className='ml-2'></RiArrowDownSFill></p>
-
                                                 </div>
                                         }
                                     </>
@@ -91,9 +97,18 @@ const Navbar = () => {
                                 <>
                                     <li><Link to='/profile' className=''>{user?.displayName}</Link></li>
                                     <div className='divider my-0 py-0'></div>
-                                    <li><Link to='/myOrders'>My Orders</Link></li>
-                                    <li><Link to='/addProduct'>Add A Product</Link></li>
-                                    <li><Link to='/myProducts'>My Products</Link></li>
+                                    {isBuyer &&
+                                        <>
+                                            <li><Link to='/myOrders'>My Orders</Link></li>
+                                        </>
+                                    }
+                                    {
+                                        isSeller &&
+                                        <>
+                                            <li><Link to='/addProduct'>Add A Product</Link></li>
+                                            <li><Link to='/myProducts'>My Products</Link></li>
+                                        </>
+                                    }
                                     {
                                         isAdmin &&
                                         <>
