@@ -5,6 +5,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 import toast from 'react-hot-toast';
 import { BiErrorCircle } from "react-icons/bi";
 import Loader from '../../Shared/Loader/Loader';
+import useToken from '../../Hook/useToken';
 // import useToken from '../../Hooks/useToken';
 
 const Register = () => {
@@ -20,16 +21,12 @@ const Register = () => {
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
 
-    if (loading) {
-        return <Loader></Loader>
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [token] = useToken(createdUserEmail);
+
+    if (token) {
+        navigate('/');
     }
-
-    // const [createdUserEmail, setCreatedUserEmail] = useState('');
-    // const [token] = useToken(createdUserEmail);
-
-    // if (token) {
-    //     navigate('/');
-    // }
 
 
     // const handleRegister = data => {
@@ -93,6 +90,7 @@ const Register = () => {
                                 .then(() => {
                                     saveUser(data.name, data.email, data.selectRole, imgData.data.url);
                                     // navigate('/');
+                                    setCreatedUserEmail(data.email);
                                 })
                                 .catch(err => console.error(err))
                         })
@@ -148,6 +146,10 @@ const Register = () => {
             })
     }
 
+
+    if (loading) {
+        return <Loader></Loader>
+    }
 
     return (
         <div className=' flex justify-center items-center'>

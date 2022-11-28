@@ -8,6 +8,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Login/Register";
 import MyOrders from "../../Pages/MyOrders/MyOrders";
+import Profile from "../../Pages/Profile/Profile";
 import AddProduct from "../../Pages/Seller/AddProduct/AddProduct";
 import MyProducts from "../../Pages/Seller/MyProducts/MyProducts";
 import BlankRoute from "../../Shared/BlankRoute/BlankRoute";
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
                 path: '/allSellers',
                 element: <AllSellers></AllSellers>
             },
+            {
+                path: '/profile',
+                element: <Profile></Profile>
+            }
         ]
     },
     {

@@ -22,6 +22,10 @@ const AddProduct = () => {
         }
     })
 
+    if (isLoading) {
+        return <Loader></Loader>
+    }
+
     const handleAddProduct = (data) => {
         console.log(data);
         const image = data.image[0];
@@ -73,10 +77,6 @@ const AddProduct = () => {
 
                 }
             })
-    }
-
-    if (isLoading) {
-        return <Loader></Loader>
     }
 
     return (

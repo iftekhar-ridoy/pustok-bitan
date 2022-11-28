@@ -68,7 +68,7 @@ const Navbar = () => {
                                     <>
                                         {
                                             user?.photoURL ?
-                                                <div className='flex items-center tooltip tooltip-bottom tooltip-success' data-tip={user?.displayName}>
+                                                <div className='flex items-center'>
                                                     <img className="ml-3 w-12 h-12 cursor-pointer rounded-full btn-circle avatar" src={user?.photoURL} alt='' />
                                                 </div>
                                                 :
@@ -87,6 +87,8 @@ const Navbar = () => {
                         {
                             user?.uid ?
                                 <>
+                                    <li><Link to='/profile' className=''>{user?.displayName}</Link></li>
+                                    <div className='divider my-0 py-0'></div>
                                     <li><Link to='/myOrders'>My Orders</Link></li>
                                     <li><Link to='/addProduct'>Add A Product</Link></li>
                                     <li><Link to='/myProducts'>My Products</Link></li>

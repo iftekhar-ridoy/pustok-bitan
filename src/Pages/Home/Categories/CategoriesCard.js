@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider';
+import Loader from '../../../Shared/Loader/Loader';
 
 const CategoriesCard = ({ category }) => {
+    const { loading } = useContext(AuthContext);
     const { title, _id } = category;
+
+    if (loading) {
+        return <Loader></Loader>
+    }
     return (
         <div className='mx-5'>
             <Link to={`/categories/${_id}`}>

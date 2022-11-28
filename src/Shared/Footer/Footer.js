@@ -16,7 +16,9 @@ const Footer = () => {
             <div className='divider py-5'></div>
             <div className='footer px-12'>
                 <div className='my-auto'>
-                    <img className='w-80' src={logo} alt="" />
+                    <Link to='/'>
+                        <img className='w-80' src={logo} alt="" />
+                    </Link>
                 </div>
                 <div>
                     <span className="footer-title">Categories</span>

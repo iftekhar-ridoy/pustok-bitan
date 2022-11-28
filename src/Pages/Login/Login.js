@@ -4,23 +4,25 @@ import toast from 'react-hot-toast';
 import { BiErrorCircle } from 'react-icons/bi';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
-// import useToken from '../../Hooks/useToken';
+import useToken from '../../Hook/useToken';
 
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { setUser, signInUser, googleSignIn } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
-    // const [loginUserEmail, setLoginUserEmail] = useState('');
-    // const [token] = useToken(loginUserEmail);
+
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
+
     const location = useLocation();
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || '/';
 
-    // if (token) {
-    //     navigate(from, { replace: true });
-    // }
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const handleLogin = data => {
         console.log(data);
@@ -32,8 +34,8 @@ const Login = () => {
                 const user = res.user;
                 console.log(user);
                 setUser(user);
-                // setLoginUserEmail(data.email);
                 toast.success('Login Successful');
+                setLoginUserEmail(data.email);
                 navigate(from, { replace: true });
             })
             .catch(err => {
@@ -74,7 +76,7 @@ const Login = () => {
                 saveUser(user.displayName, user.email, selectRole, user.photoURL);
                 toast.success('Login Successful');
                 navigate(from, { replace: true });
-                // setLoginUserEmail(data.email);
+                setLoginUserEmail(user.email);
             })
             .catch(err => {
                 console.error(err.message)

@@ -19,12 +19,15 @@ const MyProducts = () => {
     }
 
     const { data: myProducts = [], isLoading, refetch } = useQuery({
-        queryKey: ['myProducts'],
+        queryKey: ['addProduct', user?.email],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/addProduct?email=${user?.email}`);
-                const data = await res.json();
-                return data;
+                if (user?.email) {
+                    const res = await fetch(`http://localhost:5000/addProduct?email=${user?.email}`);
+                    const data = await res.json();
+                    return data;
+                }
+                return [];
             }
             catch (error) {
 
