@@ -8,8 +8,10 @@ import MyOrdersCard from './MyOrdersCard';
 
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../Context/AuthProvider';
+import useTitle from '../../Hook/useTitle';
 
 const MyOrders = () => {
+    useTitle('My Orders');
     const { user } = useContext(AuthContext)
 
     console.log(user);

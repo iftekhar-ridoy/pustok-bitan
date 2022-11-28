@@ -5,9 +5,11 @@ import toast from 'react-hot-toast';
 import { BiErrorCircle } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
+import useTitle from '../../../Hook/useTitle';
 import Loader from '../../../Shared/Loader/Loader';
 
 const AddProduct = () => {
+    useTitle('Add Product');
     const { user } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const imageHostkey = process.env.REACT_APP_imgbb_key;
@@ -111,7 +113,7 @@ const AddProduct = () => {
                             </label>
                             <select
                                 {...register("bookCategory", { required: "Speciality is required" })}
-                                className="select input-bordered w-full max-w-xs">
+                                className="select input-bordered w-full max-w-xs rounded-md">
                                 {
                                     categories?.map(category => <option
                                         key={category._id}

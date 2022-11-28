@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../../Hook/useTitle';
 import BuyItemModal from './BuyItemModal';
 import CategoryItemsCard from './CategoryItemsCard';
 
 const CategoryItems = () => {
+    useTitle('Category')
     const categoryItems = useLoaderData();
     const { title, items } = categoryItems;
     const [itemInfo, setItemInfo] = useState('');

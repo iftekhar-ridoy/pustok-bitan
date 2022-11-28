@@ -5,10 +5,12 @@ import { AuthContext } from '../../../Context/AuthProvider';
 import Loader from '../../../Shared/Loader/Loader';
 import MyProductsCard from './MyProductsCard';
 import ConfirmationModal from '../../../Shared/ConfirmationModal/ConfirmationModal';
+import useTitle from '../../../Hook/useTitle';
 
 
 
 const MyProducts = () => {
+    useTitle('My Products');
     const { user } = useContext(AuthContext);
     const [deletingOrder, setDeletingOrder] = useState(null);
 

@@ -4,10 +4,12 @@ import toast from 'react-hot-toast';
 import { BiErrorCircle } from 'react-icons/bi';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import useTitle from '../../Hook/useTitle';
 import useToken from '../../Hook/useToken';
 
 
 const Login = () => {
+    useTitle('Login');
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { setUser, signInUser, googleSignIn } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');

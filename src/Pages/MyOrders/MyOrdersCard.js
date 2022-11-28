@@ -15,7 +15,19 @@ const MyOrdersCard = ({ indx, myOrder, setDeletingOrder, isLoading }) => {
         <div
             className="flex flex-col lg:flex-row justify-evenly gap-5 mb-5 mx-5 shadow-md shadow-green-600 p-3 rounded-md">
             <div className=''>
-                <p className='text-xl font-semibold underline'>Order Details: {indx + 1}</p>
+                <div className='flex'>
+                    <span className='text-xl font-semibold underline mr-3'> Order Details: {indx + 1}</span>
+                    <span>
+                        {
+                            myOrder.itemPrice && !myOrder.paid &&
+                            <p className='text-rose-500 font-semibold px-2 rounded-full border-2 w-fit'>Unpaid</p>
+                        }
+                        {
+                            myOrder.itemPrice && myOrder.paid &&
+                            <p className='text-green-500'>Paid</p>
+                        }
+                    </span>
+                </div>
                 <div>
                     <p className='font-semibold text-gray-500'>
                         Order
@@ -33,16 +45,7 @@ const MyOrdersCard = ({ indx, myOrder, setDeletingOrder, isLoading }) => {
                             }
                         </span> tk
                     </p>
-                    <>
-                        {
-                            myOrder.itemPrice && !myOrder.paid &&
-                            <p className='text-rose-500 font-semibold'>Unpaid</p>
-                        }
-                        {
-                            myOrder.itemPrice && myOrder.paid &&
-                            <p className='text-green-500'>Paid</p>
-                        }
-                    </>
+
                 </div>
             </div>
 

@@ -2,15 +2,17 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { BiErrorCircle } from 'react-icons/bi';
 import { AuthContext } from '../../Context/AuthProvider';
+import useTitle from '../../Hook/useTitle';
 
 const Profile = () => {
+    useTitle('Profile')
     const { user } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const handleUpdate = () => {
 
     }
     return (
-        <div className='max-w-5xl mx-auto mt-10'>
+        <div className='max-w-5xl mx-auto px-5 mt-10'>
             <div className='max-w-sm mx-auto flex flex-col items-center justify-center mb-5'>
                 <img src={user.photoURL} className='h-32 w-32 rounded-full border-2 border-green-600 p-1 mb-3' alt="" />
                 <p className='text-center'>{user.displayName}</p>
@@ -52,7 +54,9 @@ const Profile = () => {
                             Email
                         </label>
                         <input type="email"
-                            {...register("email", { required: "Email Address is required" })}
+                            {...register("email",
+                                // { required: "Email Address is required" }
+                            )}
                             defaultValue={user?.email}
                             disabled
                             className="input input-bordered w-full " />

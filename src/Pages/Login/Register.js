@@ -6,9 +6,11 @@ import toast from 'react-hot-toast';
 import { BiErrorCircle } from "react-icons/bi";
 import Loader from '../../Shared/Loader/Loader';
 import useToken from '../../Hook/useToken';
+import useTitle from '../../Hook/useTitle';
 // import useToken from '../../Hooks/useToken';
 
 const Register = () => {
+    useTitle('Regiter');
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const { signUpUser, updateUser, setUser, googleSignIn, loading } = useContext(AuthContext);

@@ -60,7 +60,7 @@ const Navbar = () => {
                 </div>
 
                 {
-                    isBuyer && <p>
+                    user && isBuyer && <p>
                         <Link>
                             <HiOutlineShoppingCart className='text-3xl'></HiOutlineShoppingCart>
                         </Link>
