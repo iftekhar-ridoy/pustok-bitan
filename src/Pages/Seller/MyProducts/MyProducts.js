@@ -25,7 +25,7 @@ const MyProducts = () => {
         queryFn: async () => {
             try {
                 if (user?.email) {
-                    const res = await fetch(`http://localhost:5000/addProduct?email=${user?.email}`);
+                    const res = await fetch(`https://pustok-bitan-server.vercel.app/addProduct?email=${user?.email}`);
                     const data = await res.json();
                     return data;
                 }
@@ -39,7 +39,7 @@ const MyProducts = () => {
 
     const handelDeleteOrder = (myProduct) => {
         console.log(myProduct);
-        fetch(`http://localhost:5000/addProduct/${myProduct._id}`, {
+        fetch(`https://pustok-bitan-server.vercel.app/addProduct/${myProduct._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

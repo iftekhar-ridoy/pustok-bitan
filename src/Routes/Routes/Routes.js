@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
             {
                 path: '/categories/:id',
                 element: <PrivateRoute><CategoryItems></CategoryItems></PrivateRoute>,
-                loader: async ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
+                loader: async ({ params }) => fetch(`https://pustok-bitan-server.vercel.app/categories/${params.id}`)
             },
             {
                 path: '/myOrders',

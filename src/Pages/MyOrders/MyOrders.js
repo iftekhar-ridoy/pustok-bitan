@@ -25,7 +25,7 @@ const MyOrders = () => {
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
 
-            const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`);
+            const res = await fetch(`https://pustok-bitan-server.vercel.app/bookings?email=${user?.email}`);
             const data = await res.json();
             return data;
 
@@ -34,7 +34,7 @@ const MyOrders = () => {
 
     const handelDeleteOrder = (myOrder) => {
         console.log(myOrder);
-        fetch(`http://localhost:5000/bookings/${myOrder._id}`, {
+        fetch(`https://pustok-bitan-server.vercel.app/bookings/${myOrder._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

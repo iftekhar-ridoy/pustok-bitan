@@ -1,7 +1,47 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 import Loader from '../../../Shared/Loader/Loader';
 
 const MyProductsCard = ({ myProduct, setDeletingOrder, isLoading }) => {
+
+    // advertise product
+    const handleAdProduct = myProduct => {
+        console.log(myProduct);
+
+        const proceed = window.confirm(`${myProduct.bookName} - will be Advertised at Homepage`);
+        if (proceed) {
+            const products = {
+                sellerName: myProduct.sellerName,
+                sellerEmail: myProduct.sellerEmail,
+                bookName: myProduct.bookName,
+                bookCategory: myProduct.bookCategory,
+                bookOrginalPrice: myProduct.bookOrginalPrice,
+                bookResalePrice: myProduct.bookResalePrice,
+                bookCondition: myProduct.bookCondition,
+                sellerPhone: myProduct.sellerPhone,
+                location: myProduct.location,
+                purchaseYear: myProduct.purchaseYear,
+                usageTime: myProduct.usageTime,
+                image: myProduct.image
+            }
+            fetch('https://pustok-bitan-server.vercel.app/addAdvertise', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(products)
+            })
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result);
+                    toast.success(`Book Advertised successfully`);
+                })
+        }
+        // fetch('https://pustok-bitan-server.vercel.app/addProduct', {
+
+    }
+
+
     if (isLoading) {
         return <Loader></Loader>
     }
@@ -74,14 +114,20 @@ const MyProductsCard = ({ myProduct, setDeletingOrder, isLoading }) => {
                 </div>
             </div>
 
-            <div className=' flex gap-5 justify-center items-center'>
+            <div className=' flex flex-col gap-5 justify-center items-center'>
+                <div>
+                    <p
+                        onClick={() => handleAdProduct(myProduct)}
+                        className='px-2 py-1 font-semibold rounded outline outline-1 outline-blue-600 hover:bg-blue-600 hover:text-white hover:cursor-pointer'>Advertise Product</p>
+                </div>
                 <div>
                     <label onClick={() => setDeletingOrder(myProduct)} htmlFor="confirmation-modal"
                         className='cursor-pointer'>
-
                         <p className='px-2 py-1 font-semibold rounded outline outline-1 outline-red-600 hover:bg-red-600 hover:text-white hover:cursor-pointer'>Delete Product</p>
+
                     </label>
                 </div>
+
             </div>
         </div>
     );

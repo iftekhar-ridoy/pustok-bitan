@@ -10,7 +10,7 @@ const AllBuyers = () => {
         queryKey: ['users'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/users`);
+                const res = await fetch(`https://pustok-bitan-server.vercel.app/users`);
                 const data = await res.json();
                 return data;
             }
@@ -24,7 +24,7 @@ const AllBuyers = () => {
         console.log(user);
         const proceed = window.confirm(`Confirm to Delete User ${user.name} ?`)
         if (proceed) {
-            fetch(`http://localhost:5000/users/${user._id}`, {
+            fetch(`https://pustok-bitan-server.vercel.app/users/${user._id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
