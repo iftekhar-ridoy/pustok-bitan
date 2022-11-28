@@ -40,11 +40,11 @@ const Register = () => {
     //             // toast.success('user created successfully.')
     //             const userInfo = {
     //                 displayName: data.name,
-    //                 role: data.selectRole
+    //                 role: data.role
     //             }
     //             updateUser(userInfo)
     //                 .then(() => {
-    //                     saveUser(data.name, data.email, data.selectRole);
+    //                     saveUser(data.name, data.email, data.role);
     //                     // navigate('/');
     //                 })
     //                 .catch(err => console.error(err))
@@ -82,13 +82,13 @@ const Register = () => {
                             // toast.success('user created successfully.')
                             const userInfo = {
                                 displayName: data.name,
-                                role: data.selectRole,
+                                role: data.role,
                                 photoURL: imgData.data.url,
 
                             }
                             updateUser(userInfo)
                                 .then(() => {
-                                    saveUser(data.name, data.email, data.selectRole, imgData.data.url);
+                                    saveUser(data.name, data.email, data.role, imgData.data.url);
                                     // navigate('/');
                                     setCreatedUserEmail(data.email);
                                 })
@@ -103,11 +103,11 @@ const Register = () => {
             })
     }
 
-    const saveUser = (name, email, selectRole, image) => {
+    const saveUser = (name, email, role, image) => {
         const user = {
             name,
             email,
-            selectRole,
+            role,
             image,
         };
         fetch('http://localhost:5000/users', {
@@ -130,10 +130,10 @@ const Register = () => {
         googleSignIn()
             .then(res => {
                 const user = res.user;
-                const selectRole = 'Buyer';
+                const role = 'Buyer';
                 console.log(user);
                 setUser(user);
-                saveUser(user.displayName, user.email, selectRole);
+                saveUser(user.displayName, user.email, role);
                 toast.success('Login Successful');
                 navigate(from, { replace: true });
                 // setLoginUserEmail(data.email);
@@ -231,7 +231,7 @@ const Register = () => {
                                 <span className="text-red-500 text-xl">*</span>
                             </label>
                             <select
-                                {...register("selectRole", { required: "Select Role is required" })}
+                                {...register("role", { required: "Select Role is required" })}
                                 className="select input-bordered w-full ">
                                 <option>Buyer</option>
                                 <option>Seller</option>

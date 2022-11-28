@@ -4,8 +4,10 @@ import logo from '../../Assetes/Logo/logo.png';
 import { AuthContext } from '../../Context/AuthProvider';
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { RiArrowDownSFill } from "react-icons/ri";
+import useAdmin from '../../Hook/useAdmin';
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
+    const [isAdmin] = useAdmin(user?.email)
     const navigate = useNavigate();
     const handleLogout = () => {
         logout()
@@ -92,8 +94,13 @@ const Navbar = () => {
                                     <li><Link to='/myOrders'>My Orders</Link></li>
                                     <li><Link to='/addProduct'>Add A Product</Link></li>
                                     <li><Link to='/myProducts'>My Products</Link></li>
-                                    <li><Link to='/allBuyers'>All Buyers</Link></li>
-                                    <li><Link to='/allSellers'>All Sellers</Link></li>
+                                    {
+                                        isAdmin &&
+                                        <>
+                                            <li><Link to='/allBuyers'>All Buyers</Link></li>
+                                            <li><Link to='/allSellers'>All Sellers</Link></li>
+                                        </>
+                                    }
 
                                     <li><button onClick={handleLogout}>Logout</button></li>
                                 </>

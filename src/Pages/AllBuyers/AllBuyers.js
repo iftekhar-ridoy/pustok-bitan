@@ -63,7 +63,7 @@ const AllBuyers = () => {
                                         <th>{indx + 1}</th>
                                         <td>{user.name}</td>
                                         <td>{user.email}</td>
-                                        <td>{user.selectRole}</td>
+                                        <td>{user.role}</td>
                                         <td>
                                             <button
                                                 onClick={() => handleDelete(user)}

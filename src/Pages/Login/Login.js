@@ -44,11 +44,11 @@ const Login = () => {
             })
     }
 
-    const saveUser = (name, email, selectRole, image) => {
+    const saveUser = (name, email, role, image) => {
         const user = {
             name,
             email,
-            selectRole,
+            role,
             image
         };
         fetch('http://localhost:5000/users', {
@@ -70,10 +70,10 @@ const Login = () => {
         googleSignIn()
             .then(res => {
                 const user = res.user;
-                const selectRole = 'Buyer';
+                const role = 'Buyer';
                 console.log(user);
                 setUser(user);
-                saveUser(user.displayName, user.email, selectRole, user.photoURL);
+                saveUser(user.displayName, user.email, role, user.photoURL);
                 toast.success('Login Successful');
                 navigate(from, { replace: true });
                 setLoginUserEmail(user.email);

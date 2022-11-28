@@ -84,15 +84,15 @@ const Profile = () => {
                             Role
                         </label>
                         <input type="text"
-                            {...register("selectRole", {
+                            {...register("role", {
                                 required: "Role is required",
                             })}
                             className="input input-bordered w-full" />
 
-                        {errors.selectRole &&
+                        {errors.role &&
                             <p className='text-red-600 flex items-center gap-2 text-sm'>
                                 <BiErrorCircle></BiErrorCircle>
-                                {errors.selectRole?.message}</p>}
+                                {errors.role?.message}</p>}
                     </div>
 
                     <div className="form-control w-full max-w-sm mx-auto">
