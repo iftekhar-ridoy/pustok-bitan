@@ -18,7 +18,7 @@ const AddProduct = () => {
     const { data: categories, isLoading } = useQuery({
         queryKey: ['speciality'],
         queryFn: async () => {
-            const res = await fetch('https://pustok-bitan-server.vercel.app/categories');
+            const res = await fetch('http://localhost:5000/categories');
             const data = await res.json();
             return data;
         }
@@ -61,7 +61,7 @@ const AddProduct = () => {
                         description: data.description,
                     }
 
-                    fetch('https://pustok-bitan-server.vercel.app/addProduct', {
+                    fetch('http://localhost:5000/addProduct', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

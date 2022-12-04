@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react';
-// import { Link } from 'react-router-dom';
 import Loader from '../../Shared/Loader/Loader';
-// import { RiDeleteBin5Fill } from "react-icons/ri";
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import toast from 'react-hot-toast';
 import MyOrdersCard from './MyOrdersCard';
@@ -16,7 +14,6 @@ const MyOrders = () => {
 
     console.log(user);
     const [deletingOrder, setDeletingOrder] = useState(null);
-    // console.log(deletingOrder);
     const closeModal = () => {
         setDeletingOrder(null);
     }
@@ -25,7 +22,7 @@ const MyOrders = () => {
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
 
-            const res = await fetch(`https://pustok-bitan-server.vercel.app/bookings?email=${user?.email}`);
+            const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`);
             const data = await res.json();
             return data;
 
@@ -34,7 +31,7 @@ const MyOrders = () => {
 
     const handelDeleteOrder = (myOrder) => {
         console.log(myOrder);
-        fetch(`https://pustok-bitan-server.vercel.app/bookings/${myOrder._id}`, {
+        fetch(`http://localhost:5000/bookings/${myOrder._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -57,15 +54,18 @@ const MyOrders = () => {
         <div className='max-w-5xl mx-auto mt-10'>
             <h3 className='text-3xl font-semibold mb-5 mx-5'>My Orders</h3>
             {
-                myOrders?.map((myOrder, indx) =>
-                    <MyOrdersCard
-                        key={myOrder._id}
-                        myOrder={myOrder}
-                        indx={indx}
-                        setDeletingOrder={setDeletingOrder}
-                        isLoading={isLoading}
-                    ></MyOrdersCard>
-                )
+                myOrders.length > 0 ?
+                    myOrders?.map((myOrder, indx) =>
+                        <MyOrdersCard
+                            key={myOrder._id}
+                            myOrder={myOrder}
+                            indx={indx}
+                            setDeletingOrder={setDeletingOrder}
+                            isLoading={isLoading}
+                        ></MyOrdersCard>
+                    )
+                    :
+                    <p className='flex justify-center my-10 text-amber-400 text-3xl'>No Order Found</p>
             }
 
             {

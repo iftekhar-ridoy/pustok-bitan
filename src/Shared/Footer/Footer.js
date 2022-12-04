@@ -4,13 +4,15 @@ import logo from '../../Assetes/Logo/logo.png';
 import { FaFacebookSquare, FaGithubSquare, FaInstagramSquare, FaLinkedin } from "react-icons/fa";
 import FooterCategory from './FooterCategory';
 
+
 const Footer = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
-        fetch('https://pustok-bitan-server.vercel.app/categories')
+        fetch('http://localhost:5000/categories')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, []);
+
     return (
         <footer className="mt-20 py-5 mb-5">
             <div className='divider py-5'></div>
@@ -73,6 +75,7 @@ const Footer = () => {
             <div className='text-center mt-2 px-12'>
                 <p>Copyright © 2022 - All right reserved by Md. Iftekharul Islam Ridoy</p>
             </div>
+
         </footer>
     );
 };

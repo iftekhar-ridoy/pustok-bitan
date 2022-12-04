@@ -5,7 +5,7 @@ const useBuyer = email => {
     const [isBuyerLoading, setIsBuyerLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`https://pustok-bitan-server.vercel.app/users/Buyer/${email}`)
+            fetch(`http://localhost:5000/users/Buyer/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     // console.log(data);

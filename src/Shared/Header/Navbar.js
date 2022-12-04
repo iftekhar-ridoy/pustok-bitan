@@ -25,13 +25,14 @@ const Navbar = () => {
     }
 
     const menuItems = <>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/'>About</Link></li>
-        <li><Link to='/blog'>Blog</Link></li>
+        <li className='hover:text-green-600 hover:font-bold hover:underline'><Link to='/'>Home</Link></li>
+        <li className='hover:text-green-600 hover:font-bold hover:underline'><Link to='/categories'>Categories</Link></li>
+        <li className='hover:text-green-600 hover:font-bold hover:underline'><Link to='/about'>About</Link></li>
+        <li className='hover:text-green-600 hover:font-bold hover:underline'><Link to='/blog'>Blog</Link></li>
     </>
 
     return (
-        <div className="navbar bg-base-100 flex justify-between px-5 mb-5">
+        <div className="navbar bg-base-100  flex justify-between px-5 mb-5">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="lg:hidden">
@@ -47,7 +48,7 @@ const Navbar = () => {
             </div>
 
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal p-0">
+                <ul className="flex gap-10">
                     {menuItems}
                 </ul>
             </div>
@@ -67,6 +68,7 @@ const Navbar = () => {
                     </p>
                 }
 
+
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0}>
                         <div >
@@ -77,7 +79,7 @@ const Navbar = () => {
                                     <>
                                         {
                                             user?.photoURL ?
-                                                <div className='flex items-center'>
+                                                <div className='flex items-center tooltip tooltip-bottom' data-tip='Profile'>
                                                     <img className="ml-3 w-12 h-12 cursor-pointer rounded-full btn-circle avatar" src={user?.photoURL} alt='' />
                                                 </div>
                                                 :

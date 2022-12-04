@@ -30,7 +30,7 @@ const BuyItemModal = ({ itemInfo, setItemInfo }) => {
             meetingLocation
         }
 
-        fetch('https://pustok-bitan-server.vercel.app/bookings', {
+        fetch('http://localhost:5000/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -57,11 +57,11 @@ const BuyItemModal = ({ itemInfo, setItemInfo }) => {
             <>
                 <input type="checkbox" id="buy-item-modal" className="modal-toggle" />
                 <div className="modal">
-                    <div className="modal-box relative">
+                    <div className="modal-box max-w-3xl relative">
                         <label htmlFor="buy-item-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                         <h3 className="text-lg font-bold">Provide Your Correct Information</h3>
 
-                        <form onSubmit={handleBuy} className='grid grid-cols-1 gap-6 mt-5'>
+                        <form onSubmit={handleBuy} className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-5'>
                             <div>
                                 <label className="label flex justify-start">
                                     Name
@@ -150,8 +150,11 @@ const BuyItemModal = ({ itemInfo, setItemInfo }) => {
 
                             <input
                                 type="submit"
-                                value="Buy"
-                                className='btn btn-success w-full' />
+                                value="Order"
+                                className='btn btn-success w-full'
+                            />
+
+                            <label htmlFor="buy-item-modal" className='w-full btn btn-error'>Cancel</label>
                         </form>
                     </div>
                 </div>

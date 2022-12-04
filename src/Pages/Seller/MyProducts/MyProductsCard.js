@@ -24,7 +24,7 @@ const MyProductsCard = ({ myProduct, setDeletingOrder, isLoading }) => {
                 usageTime: myProduct.usageTime,
                 image: myProduct.image
             }
-            fetch('https://pustok-bitan-server.vercel.app/addAdvertise', {
+            fetch('http://localhost:5000/addAdvertise', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -37,7 +37,7 @@ const MyProductsCard = ({ myProduct, setDeletingOrder, isLoading }) => {
                     toast.success(`Book Advertised successfully`);
                 })
         }
-        // fetch('https://pustok-bitan-server.vercel.app/addProduct', {
+        // fetch('http://localhost:5000/addProduct', {
 
     }
 

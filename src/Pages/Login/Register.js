@@ -86,6 +86,7 @@ const Register = () => {
                                 displayName: data.name,
                                 role: data.role,
                                 photoURL: imgData.data.url,
+                                phoneNumber: data.phoneNumber
 
                             }
                             updateUser(userInfo)
@@ -105,14 +106,15 @@ const Register = () => {
             })
     }
 
-    const saveUser = (name, email, role, image) => {
+    const saveUser = (displayName, email, role, photoURL, phoneNumber) => {
         const user = {
-            name,
+            displayName,
             email,
             role,
-            image,
+            photoURL,
+            phoneNumber
         };
-        fetch('https://pustok-bitan-server.vercel.app/users', {
+        fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -161,6 +163,7 @@ const Register = () => {
                 <form onSubmit={handleSubmit(handleRegister)}>
 
                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
+
                         <div className="form-control w-full max-w-sm mx-auto">
                             <label className="label flex justify-start">
                                 Name
@@ -176,6 +179,7 @@ const Register = () => {
                                     {errors.name?.message}</p>}
                         </div>
 
+
                         <div className="form-control w-full max-w-sm mx-auto">
                             <label className="label flex justify-start">
                                 Image
@@ -190,6 +194,38 @@ const Register = () => {
                                 <p className='text-red-600 flex items-center gap-2 text-sm'>
                                     <BiErrorCircle></BiErrorCircle>
                                     {errors.image?.message}</p>}
+                        </div>
+
+                        <div className="form-control w-full">
+                            <label className="label flex justify-start">
+                                Select Your Role
+                                <span className="text-red-500 text-xl">*</span>
+                            </label>
+                            <select
+                                {...register("role", { required: "Select Role is required" })}
+                                className="select input-bordered w-full ">
+                                <option>Buyer</option>
+                                <option>Seller</option>
+                            </select>
+
+                            {errors.role &&
+                                <p className='text-red-600 text-sm'>
+                                    {errors.role?.message}</p>}
+                        </div>
+
+                        <div className="form-control w-full">
+                            <label className="label flex justify-start">
+                                Phone Number
+                                <span className="text-red-500 text-xl">*</span>
+                            </label>
+                            <input type="number"
+                                {...register("phoneNumber", { required: "Phone Number is required" })}
+                                className="input input-bordered w-full " />
+
+
+                            {errors.phoneNumber &&
+                                <p className='text-red-600 text-sm'>
+                                    {errors.phoneNumber?.message}</p>}
                         </div>
 
                         <div className="form-control w-full max-w-sm mx-auto">
@@ -226,24 +262,9 @@ const Register = () => {
                                     {errors.password?.message}</p>}
                         </div>
                     </div>
-                    <div className='max-w-sm mx-auto mt-2'>
-                        <div className="form-control w-full">
-                            <label className="label flex justify-start">
-                                Select Your Role
-                                <span className="text-red-500 text-xl">*</span>
-                            </label>
-                            <select
-                                {...register("role", { required: "Select Role is required" })}
-                                className="select input-bordered w-full ">
-                                <option>Buyer</option>
-                                <option>Seller</option>
-                            </select>
-
-                            {errors.speciality &&
-                                <p className='text-red-600 text-sm'>
-                                    {errors.speciality?.message}</p>}
-                        </div>
-                    </div>
+                    {/* <div className='max-w-sm mx-auto mt-2'>
+                        
+                    </div> */}
 
                     {signUpError && <p className='text-red-600'>{signUpError}</p>}
 

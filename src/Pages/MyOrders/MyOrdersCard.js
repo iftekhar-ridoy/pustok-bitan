@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-// import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import Loader from '../../Shared/Loader/Loader';
@@ -13,9 +12,9 @@ const MyOrdersCard = ({ indx, myOrder, setDeletingOrder, isLoading }) => {
 
     return (
         <div
-            className="flex flex-col lg:flex-row justify-evenly gap-5 mb-5 mx-5 shadow-md shadow-green-600 p-3 rounded-md">
-            <div className=''>
-                <div className='flex'>
+            className="flex flex-col lg:flex-row justify-evenly gap-5 mb-5 mx-3 shadow-md shadow-green-600 p-3 rounded-md">
+            <div className='w-[270px]'>
+                <div className='flex w-[270px]'>
                     <span className='text-xl font-semibold underline mr-3'> Order Details: {indx + 1}</span>
                     <span>
                         {
@@ -28,7 +27,7 @@ const MyOrdersCard = ({ indx, myOrder, setDeletingOrder, isLoading }) => {
                         }
                     </span>
                 </div>
-                <div>
+                <div className='w-[270px]'>
                     <p className='font-semibold text-gray-500'>
                         Order
                         <span className='ml-1'>{myOrder._id}</span>
@@ -49,7 +48,7 @@ const MyOrdersCard = ({ indx, myOrder, setDeletingOrder, isLoading }) => {
                 </div>
             </div>
 
-            <div className='w-[300px]'>
+            <div className='w-[270px]'>
                 <p className='text-xl font-semibold underline'>Your Information</p>
                 <div>
                     <p>Email:
@@ -68,7 +67,7 @@ const MyOrdersCard = ({ indx, myOrder, setDeletingOrder, isLoading }) => {
                 </div>
             </div>
 
-            <div className=' flex gap-5 justify-center items-center'>
+            <div className=' flex gap-5 justify-center items-center w-[270px]'>
                 <div>
                     {
                         myOrder.itemPrice && !myOrder.paid &&

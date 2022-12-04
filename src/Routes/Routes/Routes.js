@@ -3,6 +3,7 @@ import Main from "../../Layout/Main/Main";
 import AllBuyers from "../../Pages/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/AllSellers/AllSellers";
 import Blog from "../../Pages/Blog/Blog";
+import Categories from "../../Pages/Home/Categories/Categories";
 import CategoryItems from "../../Pages/Home/Categories/CategoryItems";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
@@ -35,10 +36,15 @@ export const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
+                path: '/categories',
+                element: <Categories></Categories>
+            },
+            {
                 path: '/categories/:id',
                 element: <PrivateRoute><CategoryItems></CategoryItems></PrivateRoute>,
-                loader: async ({ params }) => fetch(`https://pustok-bitan-server.vercel.app/categories/${params.id}`)
+                loader: async ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
             },
+
             {
                 path: '/myOrders',
                 element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
